@@ -1,7 +1,7 @@
 local test_result = function()
     local lines = {}
     local cmd = vim.api.nvim_exec("!./vendor/bin/phpunit", true)
-    
+
     for line in cmd:gmatch("[^\r\n]+") do
         table.insert(lines, line)
     end
