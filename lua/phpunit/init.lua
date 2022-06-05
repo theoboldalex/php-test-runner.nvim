@@ -11,8 +11,6 @@ local test_result = function()
     return lines
 end
 
-local buffer = vim.api.nvim_create_buf(false, true)
-
 local options = {
   relative = 'win',
   width = 120,
@@ -24,6 +22,7 @@ local options = {
 }
 
 M.run_tests = function()
+    local buffer = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_open_win(buffer, true, options)
     vim.api.nvim_buf_set_lines(buffer, 2, 2, false, test_result())
 end
