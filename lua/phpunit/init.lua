@@ -1,3 +1,5 @@
+local M = {}
+
 local test_result = function()
     local lines = {}
     local cmd = vim.api.nvim_exec("!./vendor/bin/phpunit", true)
@@ -21,7 +23,9 @@ local options = {
   col = 20
 }
 
-vim.api.nvim_open_win(buffer, true, options)
+M.run_tests = function()
+    vim.api.nvim_open_win(buffer, true, options)
+    vim.api.nvim_buf_set_lines(buffer, 2, 2, false, test_result())
+end
 
-vim.api.nvim_buf_set_lines(buffer, 2, 2, false, test_result())
-
+return M
