@@ -12,13 +12,13 @@ local test_result = function()
 end
 
 local options = {
-  relative = 'win',
-  width = 120,
-  height = 20,
-  style = "minimal",
-  win = 1001,
-  row = 20,
-  col = 20
+    relative = 'win',
+    width = 120,
+    height = 20,
+    style = "minimal",
+    win = 1001,
+    row = 20,
+    col = 20
 }
 
 M.run_tests = function()
