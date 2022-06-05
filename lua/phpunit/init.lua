@@ -11,8 +11,26 @@ local test_result = function()
     return lines
 end
 
+local function map_window_close_keys(buffer)
+    local bufClosingKeys = {"<Esc>", "<CR>", "<Leader>"}
+
+    for _, key in ipairs(bufClosingKeys) do
+        vim.api.nvim_buf_set_keymap(
+            buffer,
+            "n",
+            key,
+            ":close<CR>",
+            {
+                silent=true,
+                nowait=true,
+                noremap=true
+            }
+        )
+    end
+end
+
 local options = {
-    relative = 'win',
+    relative = "win",
     width = 120,
     height = 20,
     style = "minimal",
@@ -23,6 +41,8 @@ local options = {
 
 M.run_tests = function()
     local buffer = vim.api.nvim_create_buf(false, true)
+
+    map_window_close_keys(buffer)
     vim.api.nvim_open_win(buffer, true, options)
     vim.api.nvim_buf_set_lines(buffer, 2, 2, false, test_result())
 end
